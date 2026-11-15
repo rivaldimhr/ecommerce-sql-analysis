@@ -1,0 +1,8 @@
+segment,customers,customers_pct,gmv,gmv_pct,avg_recency_days,avg_frequency,avg_monetary
+"Baru, nilai tinggi",14664,15.48,3929058.82,29.21,93.0,1.0,267.94
+"Nilai tinggi, hampir hilang",13984,14.77,3881948.53,28.86,394.0,1.0,277.6
+Perlu perhatian,18327,19.35,2391992.56,17.78,222.0,1.0,130.52
+Hilang,22862,24.14,1277380.26,9.5,395.0,1.0,55.87
+"Baru, nilai rendah",21992,23.22,1222024.79,9.09,91.0,1.0,55.57
+"Loyal, mulai pasif",1648,1.74,416266.55,3.1,322.0,2.08,252.59
+Champions,1226,1.29,330858.17,2.46,90.0,2.15,269.87

@@ -1,0 +1,51 @@
+# Setiap push / pull request:
+#   1. ambil data Olist, bangun database SQLite, jalankan semua query
+#   2. pastikan hasil di repo sama dengan hasil query (analisis bisa diulang)
+#   3. test kualitas data, cek silang hasil, dan test dashboard di Chromium
+# Push ke main: dashboard dipublikasikan ke branch gh-pages.
+name: Analysis
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: write
+
+jobs:
+  analysis:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Ambil data dan bangun database
+        run: |
+          sh scripts/get_data.sh
+          python scripts/build_db.py
+
+      - name: Jalankan query dan tulis rekomendasi
+        run: |
+          python scripts/run_analysis.py
+          python scripts/build_brief.py
+
+      - name: Hasil di repo sama dengan hasil query
+        run: git diff --exit-code -- results dashboard/data.json docs/rekomendasi.md
+
+      - name: Test
+        run: |
+          pip install -q pytest playwright
+          python -m playwright install --with-deps chromium >/dev/null
+          python -m pytest -v tests
+
+      - name: Publikasikan dashboard ke gh-pages
+        if: github.ref == 'refs/heads/main'
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dashboard
+          force_orphan: true
