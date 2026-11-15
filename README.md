@@ -6,7 +6,34 @@ Analisis 98 ribu pesanan e-commerce Brasil (Olist, Jan 2017 – Agu 2018) dengan
 
 ![Dashboard](docs/img/dashboard-hero.png)
 
-## Pertanyaan bisnis dan jawabannya
+## Penjelasan sederhana
+
+**Apa ini?** Olist adalah marketplace besar di Brasil, mirip Tokopedia atau Shopee. Olist membagikan data 98 ribu pesanan asli (nama pembeli disamarkan) untuk latihan analisis. Pertanyaan saya: *kenapa pelanggan tidak kembali belanja, dan apa yang bisa dilakukan perusahaan?*
+
+**Apa yang ditemukan, singkatnya:**
+
+1. **Hampir semua pelanggan hanya belanja sekali.** Dari 100 pelanggan, hanya 3 yang pernah belanja lagi. Jadi perusahaan terus-menerus harus mencari pembeli baru, yang biayanya mahal.
+2. **Paket terlambat = ulasan buruk.** Kalau barang terlambat lebih dari seminggu, 8 dari 10 pembeli memberi bintang 1 atau 2. Kalau tepat waktu, hanya 1 dari 10.
+3. **Yang dinilai pembeli adalah janji, bukan kecepatan.** Dua paket yang sama-sama butuh 15–21 hari: yang tiba sesuai perkiraan di aplikasi dapat rata-rata 4,2 bintang, yang terlambat hanya 2,9 bintang.
+4. **Pengalaman pertama menentukan.** Pembeli yang pesanan pertamanya terlambat, 25% lebih jarang kembali belanja. Hasil ini sudah diuji secara statistik, jadi bukan kebetulan.
+5. **Keterlambatan menumpuk saat ramai,** misalnya saat Black Friday dan awal 2018, dan di daerah yang jauh dari pusat pengiriman.
+
+**Apa yang disarankan:** menambah kapasitas pengiriman sebelum musim ramai, memprioritaskan pesanan pertama (dan memberi voucher permintaan maaf bila terlambat), membuat perkiraan waktu kirim yang lebih jujur untuk daerah jauh, dan mengajak pembeli baru yang belanjanya besar untuk belanja kedua kalinya. Lengkapnya di [rekomendasi satu halaman](docs/rekomendasi.md).
+
+**Kenapa SQL?** SQL adalah bahasa untuk "bertanya" ke database, misalnya *"berapa persen pesanan yang terlambat setiap bulan?"*. Semua angka di sini dihitung dengan query SQL, bukan diketik manual di Excel. Jadi siapa pun bisa menjalankan ulang dan mendapat angka yang sama, dan setiap grafik di dashboard punya tombol untuk melihat query di baliknya.
+
+**Istilah yang dipakai:**
+
+| Istilah | Artinya |
+|---|---|
+| Retensi | Berapa banyak pelanggan yang kembali belanja |
+| Cohort | Kelompok pelanggan berdasarkan bulan pertama mereka belanja, untuk melihat berapa yang kembali bulan-bulan berikutnya |
+| RFM | Cara mengelompokkan pelanggan dari 3 hal: kapan terakhir belanja (Recency), seberapa sering (Frequency), dan berapa banyak uangnya (Monetary) |
+| GMV / nilai penjualan | Total harga barang yang terjual, tanpa ongkir |
+| p-value | Ukuran "apakah ini kebetulan?". Di bawah 0,05 artinya kecil kemungkinan hasilnya hanya kebetulan |
+| Query | Satu pertanyaan yang ditulis dalam SQL |
+
+## Pertanyaan bisnis dan jawabannya (detail)
 
 | Pertanyaan | Jawaban singkat | Query |
 |---|---|---|
